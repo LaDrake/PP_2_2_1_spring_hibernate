@@ -10,9 +10,14 @@ import java.util.List;
 
 @Service
 public class UserServiceImp implements UserService {
-
    @Autowired
    private UserDao userDao;
+
+   @Transactional
+   public List<User> getUserCar(String model, int series) {
+      return userDao.getUserCar(model, series);
+   }
+
 
    @Transactional
    @Override

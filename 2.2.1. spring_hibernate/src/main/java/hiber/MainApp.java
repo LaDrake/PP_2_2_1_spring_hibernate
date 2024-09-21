@@ -8,7 +8,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Objects;
 
 public class MainApp {
    public static void main(String[] args) throws SQLException {
@@ -26,11 +25,22 @@ public class MainApp {
       userService.add(new User(car4,"User4", "Lastname4", "user4@mail.ru"));
 
       List<User> users = userService.listUsers();
+      List<User> usersByModelAndSeries = userService.getUserCar("BMW", 1);
+      for (User user : usersByModelAndSeries) {
+         System.out.println("Id = " + user.getId());
+         System.out.println("First Name = " + user.getFirstName());
+         System.out.println("Last Name = " + user.getLastName());
+         System.out.println("Email = " + user.getEmail());
+         System.out.println("Car = " + user.getCar());
+         System.out.println();
+      }
+      System.out.println("______________________________");
       for (User user : users) {
          System.out.println("Id = "+user.getId());
          System.out.println("First Name = "+user.getFirstName());
          System.out.println("Last Name = "+user.getLastName());
          System.out.println("Email = "+user.getEmail());
+         System.out.println("Car = " + user.getCar());
          System.out.println();
       }
 
